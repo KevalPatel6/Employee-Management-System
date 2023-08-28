@@ -1,5 +1,8 @@
-import inquirer  from "inquirer";
-import mysql2 from 'mysql2'
+import inquirer  from "inquirer"
+
+const PORT = process.env.PORT || 3306
+
+
 
 let {options} = await inquirer.prompt([
     {
@@ -18,3 +21,4 @@ let {options} = await inquirer.prompt([
 
 
 ])
+
