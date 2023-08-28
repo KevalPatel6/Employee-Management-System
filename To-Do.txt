@@ -2,4 +2,9 @@
 2. Create DB
 3. Inquirer
 4. Search queries for each Acceptance Criteria
+    1) View
+    2) Add
+    3) Update
+    4) DELETE
 
+5. Try classes if not just do function

@@ -2,7 +2,9 @@
 SELECT * FROM department
 
 --View All Roles--
-SELECT * FROM role
+SELECT role.role_id, role.title, department.name, role.salary  
+FROM role
+INNER JOIN department ON role.department_id = department.id
 
 --View All Employees--
 SELECT * FROM employee
