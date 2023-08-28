@@ -1,7 +1,5 @@
 import inquirer  from "inquirer"
-
-const PORT = process.env.PORT || 3306
-
+import db from './server'
 
 
 let {options} = await inquirer.prompt([

@@ -27,3 +27,10 @@ db.connect(function(err){
         console.log(`Connected to the employee_db Database`)
     }
 })
+
+
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+
+module.exports = db
