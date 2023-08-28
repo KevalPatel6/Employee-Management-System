@@ -54,24 +54,26 @@ async function directory() {
         }
         
         if (answer.directory === 'View All Roles') {
-            db.query('SELECT * FROM roles', (err, results) => {
+            db.query('SELECT * FROM role', (err, results) => {
                 if (err) {
                     console.error("Query could not be completed", err)
                 }
                 else {
                     console.table(results)
+                    directory()
                 }
             }
             )
         }
         
         if (answer.directory === 'View All Employees') {
-            db.query('SELECT * FROM department', (err, results) => {
+            db.query('SELECT * FROM employee', (err, results) => {
                 if (err) {
                     console.error("Query could not be completed", err)
                 }
                 else {
                     console.table(results)
+                     directory()
                 }
             }
             )
