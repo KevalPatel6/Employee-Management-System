@@ -40,7 +40,7 @@ class Database {
             SELECT role.id, role.title, department.name, role.salary  
             FROM role
             INNER JOIN department ON role.department_id = department.id
-            ORDER BY role.id`)
+            ORDER BY role.id;`)
                 .then(([rows]) => {
                     return rows
                   } )
@@ -49,7 +49,12 @@ class Database {
         }
         if (this.table === 'employee') {
         
-            return db.promise().query('SELECT * FROM employee')
+            return db.promise().query(`
+            SELECT employee.id, employee.first_name, employee.last_name, role.title, department.name, role.salary, employee.manager_id
+            FROM employee
+            INNER JOIN role ON employee.role_id = role.id
+            INNER JOIN department ON role.department_id = department.id
+            ORDER BY employee.id`)
                 .then(([rows]) => {
                     return rows
                   } )

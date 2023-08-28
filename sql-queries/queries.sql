@@ -7,7 +7,14 @@ FROM role
 INNER JOIN department ON role.department_id = department.id
 
 --View All Employees--
-SELECT * FROM employee
+SELECT employee.id, employee.first_name, employee.last_name, role.title , employee.manager_id
+FROM employee
+LEFT JOIN role
+ON employee.role_id = role.id
+LEFT JOIN department
+ON role.department_id = department.id
+ORDER BY employee.id
+ 
 
 --Add a Department--
 INSERT INTO department
