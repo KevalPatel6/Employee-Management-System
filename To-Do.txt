@@ -1,3 +1,5 @@
 1. Initial file setup/install packages
 2. Create DB
-3. 
+3. Inquirer
+4. Search queries for each Acceptance Criteria
+
