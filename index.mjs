@@ -24,17 +24,20 @@ db.connect(function(err){
 //----------------------------------------//
 
 //--------------Initial Prompt------------//
-await inquirer.prompt([
-    {
-        type: 'list',
-        name: 'directory',
-        message: 'What would you like to do?',
-        choices: ['View All Departments', 'View All Roles', 'View All Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role'],
-        filter(val) {
-            return val;
+directory();
+async function directory() {
+    await inquirer.prompt([
+        
+        {
+            type: 'list',
+            name: 'directory',
+            message: 'What would you like to do?',
+            choices: ['View All Departments', 'View All Roles', 'View All Employees', 'Add a Department', 'Add a Role', 'Add an Employee', 'Update an Employee Role'],
+            filter(val) {
+                return val;
+            }
         }
-    }
-])
+    ])
     .then((answer) =>{
         console.log(answer)
         if (answer.directory === 'View All Departments') {
@@ -43,9 +46,8 @@ await inquirer.prompt([
                     console.error("Query could not be completed", err)
                 }
                 else {
-                    console.log(`This should work`)
                     console.table(results)
-                    
+                    directory()
                 }
             }
             )
@@ -74,7 +76,9 @@ await inquirer.prompt([
             }
             )
         }
-
-
+        
+        
     })
-
+}
+    
+    
