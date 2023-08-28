@@ -18,7 +18,7 @@ ORDER BY employee.id
 
 --Add a Department--
 INSERT INTO department
-VALUES ()
+VALUES (`${name}`)
 
 --Add a Role--
 INSERT INTO role

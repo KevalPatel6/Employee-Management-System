@@ -29,7 +29,7 @@ directory();
 async function directory() {
     try {
         //-------------Inquirer Directory Prompt-----------//
-        const { directory } = await inquirer.prompt([
+        const {directory, addDepartment} = await inquirer.prompt([
 
             {
                 type: 'list',
@@ -39,8 +39,17 @@ async function directory() {
                 filter(val) {
                     return val
                 }
-            }
+            },
+            {
+                type: 'input',
+                name: 'addDepartment',
+                message: 'Enter the name of a department',
+                when:  (answer) => answer.directory==='Add a Department' 
+                
+            },
+            
         ]);
+
         //----------'View All' Functionality---------
         if (directory === 'View All Departments') {
             let db = new Database('department');
@@ -57,10 +66,21 @@ async function directory() {
             let rows = await db.view()
             console.table(rows)
         }
+        
+        //----------'Add Department Functionality-------//
+        else if (directory ==='Add a Department'){
+
+            let db = new Database('department') 
+            let rows = await db.add(addDepartment)
+            console.table(rows)
+        }
+
     }
     catch (error) {
         console.error('Error with Query', error)
     }
+    
+      
+    
+    
 }
-
-

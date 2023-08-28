@@ -24,15 +24,15 @@ class Database {
         this.table = tableName
     }
    async view() {
-        if (this.table === 'department') {
+        // if (this.table === 'department') {
         
-            return db.promise().query('SELECT * FROM department')
-                .then(([rows]) => {
-                    return rows
-                  } )
-                  .catch(console.log)
+        //     return db.promise().query('SELECT * FROM department')
+        //         .then(([rows]) => {
+        //             return rows
+        //           } )
+        //           .catch(console.log)
                   
-        }
+        // }
 
         if (this.table === 'role') {
         
@@ -65,12 +65,20 @@ class Database {
 
     }
 
+    async add(value) {
+     
+        if(this.table==='department'){
+            db.promise().query(`INSERT INTO department (name) VALUES (${value})`) 
+            return db.promise().query(`SELECT * from department`)
+                .then(([rows]) =>{
+                    return rows
+                })
+                .catch(console.log)
+        }
+    }
 
 
-add(){
 
-
-}
 
 update(){
 
