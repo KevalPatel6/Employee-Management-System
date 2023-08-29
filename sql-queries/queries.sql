@@ -18,11 +18,15 @@ ORDER BY employee.id
 
 --Add a Department--
 INSERT INTO department
-VALUES (`${name}`)
+VALUES (`${name}`);
+
+SELECT * FROM department
 
 --Add a Role--
-INSERT INTO role
+INSERT INTO role (title, salary)
 VALUES ()
+
+
 
 --Add an Employee--
 INSERT INTO employee

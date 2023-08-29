@@ -20,19 +20,23 @@ db.connect(function (err) {
 })
 
 class Database {
-    constructor(tableName) {
-        this.table = tableName
+    constructor(tableName, roleTitle, employeeName, employeeSalary, department) {
+        this.table = tableName,
+        this.name = employeeName,
+        this.salary = employeeSalary,
+        this.department = department
+        this.title = roleTitle
     }
    async view() {
-        // if (this.table === 'department') {
+        if (this.table === 'department') {
         
-        //     return db.promise().query('SELECT * FROM department')
-        //         .then(([rows]) => {
-        //             return rows
-        //           } )
-        //           .catch(console.log)
+            return db.promise().query('SELECT * FROM department')
+                .then(([rows]) => {
+                    return rows
+                  } )
+                  .catch(console.log)
                   
-        // }
+        }
 
         if (this.table === 'role') {
         
@@ -68,12 +72,23 @@ class Database {
     async add(value) {
      
         if(this.table==='department'){
-            db.promise().query(`INSERT INTO department (name) VALUES (${value})`) 
+            await db.promise().query(`INSERT INTO department (name) VALUES (${value})`) 
             return db.promise().query(`SELECT * from department`)
                 .then(([rows]) =>{
                     return rows
                 })
                 .catch(console.log)
+        }
+        if(this.table==='role'){
+           
+            await db.promise().query(`INSERT INTO role (title, salary) VALUES ('${this.title}',${this.salary})`);
+            await db.promise().query(`INSERT INTO role (department_id) SELECT department.id FROM department JOIN role on department.id = role.department_id where department.name is = '${this.department}'`)
+            return db.promise().query('SELECT * from roles')    
+            .then(([rows]) =>{
+                return rows
+                }
+
+                )
         }
     }
 
